@@ -17,6 +17,8 @@ public class SearchArray {
 		System.out.println("Value found at index: "
 				+ recursiveLinearSearch(new String[] { "Hello", "World", "Big", "bee" }, 0, 3, "Big"));
 
+		System.out.println("Value found : " + binarySearch(new int[] { 1, 3, 4, 5, 6, 7, 8, 9 }, 9));
+
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class SearchArray {
 	 * @param value
 	 * @return returns index of found element
 	 */
-	private static <T> int recursiveLinearSearch(T[] array, int l, int r, T value) {
+	private static <T> int recursiveLinearSearch(final T[] array, int l, int r, final T value) {
 		if (r < l)
 			return -1;
 		if (array[l] == value)
@@ -55,6 +57,29 @@ public class SearchArray {
 		if (array[r] == value)
 			return r;
 		return recursiveLinearSearch(array, l + 1, r - 1, value);
+	}
+
+	/**
+	 * BInary Search to find element present in array
+	 * 
+	 * @param array
+	 * @param valueToSearch
+	 * @return index of the element found
+	 */
+	private static int binarySearch(final int[] array, final int valueToSearch) {
+		int min = 0;
+		int max = array.length - 1;
+
+		while (max >= min) {
+			int guess = (min + max) / 2;
+			if (valueToSearch == array[guess])
+				return guess;
+			else if (array[guess] > valueToSearch)
+				max = guess - 1;
+			else
+				min = guess + 1;
+		}
+		return -1;
 	}
 
 }
