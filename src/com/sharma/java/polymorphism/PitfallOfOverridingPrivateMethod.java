@@ -8,6 +8,8 @@ public class PitfallOfOverridingPrivateMethod {
 }
 
 class Parent {
+	
+	int field;
 
 	public static void main(String[] args) {
 		Parent p = new Child();
